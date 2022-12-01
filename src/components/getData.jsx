@@ -21,3 +21,8 @@ export const register= async (formdata)=>{
     const response = await axios.post(url+'/auth/register',formdata)
     return await response
 }
+
+export const updateAvatar= async (formdata)=>{
+    const response = await axios.put(url+'/auth/updateAvatar',formdata,{header:{"Content-Type":"multipart/form-data"}})
+    return await response
+}

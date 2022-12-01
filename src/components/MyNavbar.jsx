@@ -10,7 +10,6 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  NavbarText,
 } from "reactstrap";
 import { NavLink } from "react-router-dom";
 
@@ -58,16 +57,20 @@ export const MyNavbar = ({ loggedInUser, setLoggedInUser }) => {
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>
-          {loggedInUser ?
+          {loggedInUser?.username ?
           (
             <Nav navbar>
               <NavItem className="nav-link d-flex align-items-center">
-                  <img style={{width:"30px",marginRight:"10px"}} src="man.png" alt="Avatar" />
-                  <span style={{cursor:"pointer"}}>{loggedInUser}</span>
+              <NavLink to="userProfile" className="nav-link">
+                  <img style={{width:"20px",marginRight:"10px"}} src="man.png" alt="Avatar" />
+                  <span style={{cursor:"pointer"}}>{loggedInUser.username}</span>
+              </NavLink>
               </NavItem>
   
               <NavItem className="d-flex align-items-center">
-                  <span className="btn text-info" onClick={()=>setLoggedInUser('')}>Logout</span>
+                <NavLink to="/">
+                  <span className="btn text-info" onClick={()=>setLoggedInUser({})}>Logout</span>
+                </NavLink> 
               </NavItem>
             </Nav>)
           : 
