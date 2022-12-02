@@ -26,3 +26,9 @@ export const updateAvatar= async (formdata)=>{
     const response = await axios.put(url+'/auth/updateAvatar',formdata,{header:{"Content-Type":"multipart/form-data"}})
     return await response
 }
+
+export const deleteUser= async (formdata)=>{
+    console.log("getdata: ",formdata)
+    const response = await axios.post(url+'/auth/deleteUser',formdata)
+    return await response
+}
