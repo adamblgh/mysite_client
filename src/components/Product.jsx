@@ -3,6 +3,7 @@ import { useParams,useNavigate } from 'react-router-dom'
 import {data} from '../data.js'
 import Card from 'react-bootstrap/Card';
 import { Myimg } from './Myimg.jsx';
+import { motion } from "framer-motion"
 
 export const Product=()=> {
     const params=useParams()
@@ -11,7 +12,7 @@ export const Product=()=> {
     console.log(selProduct)
     const navigate=useNavigate()
   return (
-    <div className='d-flex justify-content-center text-center mt-5'>
+    <motion.div initial={{x:'100vw'}} animate={{x:0}} transition={{delay:0.3,type:"spring",stiffness:45}} className='d-flex justify-content-center text-center mt-5'>
         <Card style={{ width: '18rem' }}>
             <Myimg selProduct={selProduct}/>
       {/*<Card.Img variant="top" src={selProduct.imgUrl} />*/}
@@ -24,6 +25,6 @@ export const Product=()=> {
       </Card.Body>
     </Card>
         
-    </div>
+    </motion.div>
   )
 }

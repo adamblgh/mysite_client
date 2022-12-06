@@ -29,6 +29,11 @@ export const updateAvatar= async (formdata)=>{
 
 export const deleteUser= async (formdata)=>{
     console.log("getdata: ",formdata)
-    const response = await axios.post(url+'/auth/deleteUser',formdata)
+    const response = await axios.delete(url+'/auth/deleteUser',{data:formdata})
+    return await response
+}
+
+export const changePassword= async (formdata)=>{
+    const response = await axios.put(url+'/auth/changePassword',formdata)
     return await response
 }

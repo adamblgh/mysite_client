@@ -54,7 +54,7 @@ export const Login = ({setLoggedInUser}) => {
             onBlur={handleCheckUsername}
             onKeyPress={(e)=>e.key=='Enter' ? document.getElementById("password").focus() : ''}
         />
-        <FormFeedback>Username already exists!</FormFeedback>
+        <FormFeedback>Username not found!</FormFeedback>
       </FormGroup>
  
       <FormGroup>

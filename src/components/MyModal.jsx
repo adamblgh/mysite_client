@@ -2,9 +2,10 @@ import React from 'react';
 import { useMutation } from 'react-query';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { deleteUser } from './getData';
+import { useNavigate } from 'react-router-dom';
 
 export const MyModal=({modal,setModal,username,avatar_id,setLoggedInUser})=> {
-
+  const navigate = useNavigate()
   const toggle = () => setModal(!modal);
   const toggleDelete=()=>{
    console.log("Törlendő: ",username,avatar_id)
@@ -18,6 +19,7 @@ export const MyModal=({modal,setModal,username,avatar_id,setLoggedInUser})=> {
     onSuccess:(data)=>{
         console.log(data.data)
         setLoggedInUser({})
+        navigate('/')
     }
   })
 

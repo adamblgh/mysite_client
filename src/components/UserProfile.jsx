@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FileDrop } from "./FileDrop";
 import { useMutation } from "react-query";
 import { Form, FormGroup, Label, Input, Col } from "reactstrap";
-import { updateAvatar } from "./getData";
+import { updateAvatar,changePassword } from "./getData";
 import { Button,Spinner } from "reactstrap"
 import { MyModal } from "./MyModal";
 
@@ -11,6 +11,7 @@ export const UserProfile = ({ loggedInUser, setLoggedInUser }) => {
   const [msg, setMsg] = useState("");
   const [ isUploading, setIsUploading ] = useState(false);
   const [modal, setModal] = useState(false);
+  const [newPw,setNewPw] = useState('')
 
   const mutationAvatar = useMutation(updateAvatar, {
     onSuccess: (data) => {
@@ -38,6 +39,16 @@ const handleDelete = ()=>{
   setModal(true)
 }
 
+const handleChangePw = ()=>{
+  mutationChangePw.mutate({username:loggedInUser.username,password:newPw})
+}
+
+const mutationChangePw = useMutation(changePassword, {
+  onSuccess: (data) => {
+    setMsg(data.data.msg);
+  },
+});
+
   return (
     <div className="mt-3">
       <h3 className="p-2 border-bottom text-center">User Profile Settings</h3>
@@ -52,13 +63,19 @@ const handleDelete = ()=>{
             New Password
           </Label>
           <Col sm={8}>
-            <Input id="pw" name="password" type="password" />
+            <Input 
+            id="pw" 
+            name="password" 
+            type="password" 
+            value={newPw} 
+            onChange={(e)=>setNewPw(e.target.value)} />
           </Col>
           <Col sm={4}>
             <Input
               type="button"
+              disabled={!newPw || newPw.length<6}
               value="Change Password"
-              onClick={() => console.log("Change Password...")}
+              onClick={handleChangePw}
             />
           </Col>
         </FormGroup>

@@ -1,5 +1,6 @@
 import React,{useState} from 'react'
 import {data} from '../data.js'
+import { motion } from "framer-motion"
 import { useNavigate } from 'react-router-dom'
 
 export const Products=()=> {
@@ -11,9 +12,9 @@ export const Products=()=> {
       <div className="d-flex justify-content-center text-center">
         <ul className='list-group text-center'>
               {items.map(obj=>
-              <li className='list-group-item btn btn-primary m-2 text-center' key={obj.id} onClick={()=>navigate('/products/'+obj.id)}>
+              <motion.li whileHover={{scale:1.3,color:'white'}} className='list-group-item btn btn-primary m-2 text-center' key={obj.id} onClick={()=>navigate('/products/'+obj.id)}>
                 {obj.name}
-              </li>
+              </motion.li>
               )}  
         </ul>
       </div>
